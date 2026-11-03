@@ -7,5 +7,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Say Hello
-        run: echo "Hello from CI"
+      - name: code download
+        uses: actions/checkout@v5
+      - name: java setup
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: app build and test
+        run: ./mvnw -B verify
